@@ -1,0 +1,8 @@
+{
+  "name": "fleet-link-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/lokeswar12/fleet-link-server.git",
+  "author": "Lokeswar-S <lokeswar.s@unifo.in>",
+  "license": "MIT"
+}
