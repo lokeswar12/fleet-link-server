@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
 
 const vehicleSchema = new mongoose.Schema({
     organisationId:{type:mongoose.Schema.Types.ObjectId, ref:"organisationSchema"},
-    vehicleNo:{type:String, required:true},
+    vehicleNo:{type:String, required:true, unique:true},
     type:{type:String, enum:["truck", "bus", "van"]},
     vehicleCapacity:{
         weight:{type:Number},
