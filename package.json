@@ -1,8 +1,19 @@
 {
   "name": "fleet-link-server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/main.js",
   "repository": "https://github.com/lokeswar12/fleet-link-server.git",
   "author": "Lokeswar-S <lokeswar.s@unifo.in>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/main.js",
+    "build": "node src/main.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "joi": "^18.0.1",
+    "mongoose": "^8.18.1"
+  }
 }
