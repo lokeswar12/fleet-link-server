@@ -27,7 +27,7 @@ const vehicleSchema = new mongoose.Schema({
     availabilityStatus:{type:String, enum:["available", "partiallyBooked", "unavailable"], default:"available"},
     vehicleStartTime:{type:String},
     vehicleEndTime:{type:String},
-    booking:{
+    booking:[{
         bookingtatus:{type:String, enum:["confirmed", "completed", "cancelled"]},
         customerName:{type:String},
         route:{
@@ -40,7 +40,7 @@ const vehicleSchema = new mongoose.Schema({
             weight:{type:Number},
             passengers:{type:Number}
         },
-    }
+    }]
 }, {timestamps:true})
 
 export const Organisation = mongoose.model("Organisation", organisationSchema)
