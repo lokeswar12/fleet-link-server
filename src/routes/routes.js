@@ -1,9 +1,10 @@
 import express from 'express';
 import {validator} from '../utlis/validatePayload.js';
 import { createVehicle } from '../resources/vehicles-details/createVehicle.js';
-import  {bookingVehicleValidation, newVehicleSchema}  from "../middleware/validation.js"
+import  {bookingVehicleValidation, newVehicleSchema, userValidation}  from "../middleware/validation.js"
 import { getVehicleDetails } from '../resources/vehicles-details/getVehicle.js';
 import { bookingVehicle } from '../resources/travel-details/bookingVehicle.js';
+import { createOrg } from '../resources/user/createUser.js';
 
 const router = express.Router();
 
@@ -115,6 +116,24 @@ router.get("/vehicles/available", async(req, res) => {
             message:"Internal Server Error"
         })
         console.error("Error in getting vehicle details")
+    }
+})
+
+router.post("/create/organisation", validator(userValidation), async (req, res) => {
+    try{
+        const data = req?.body
+        const response = await createOrg(data)
+        res.status(201).json({
+            success:true,
+            message:"Organisation Created Successfully",
+            data:response
+        })
+    } catch (error){
+        res.status(500).json({
+            error:error?.message,
+            message:"Internal Server Error"
+        })
+        console.error("Error in creating organisation")
     }
 })
 

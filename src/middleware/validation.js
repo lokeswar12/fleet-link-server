@@ -27,3 +27,14 @@ export const bookingVehicleValidation = joi.object({
         weight:joi.number().required()
     })
 })
+
+export const userValidation = joi.object({
+    companyName:joi.string().required(),
+    companyEmail:joi.string().required(),
+    contactNo:joi.number().required(),
+    address:joi.string().required(),
+    name:joi.string().required(),
+    email:joi.string().optional(""),
+    password:joi.string().required(),
+    role:joi.string().required()
+})
