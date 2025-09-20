@@ -13,3 +13,17 @@ export const newVehicleSchema = joi.object({
     vehicleStartTime: joi.string().required(),
     vehicleEndTime: joi.string().required()
 })
+
+export const bookingVehicleValidation = joi.object({
+    vehicleId:joi.string().required(),
+    organisationId:joi.string().required(),
+    customerName:joi.string().required(),
+    route:joi.object({
+        origin:joi.string().required(),
+        destination:joi.string().required()
+    }).required(),
+    bookingStartTime:joi.string(),
+    bookingCapacity:joi.object({
+        weight:joi.number().required()
+    })
+})
