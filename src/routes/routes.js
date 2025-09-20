@@ -40,6 +40,7 @@ router.get("/all/vehicles", async(req, res) => {
     }
 })
 
+// vehicle booking
 router.post("/bookings", validator(bookingVehicleValidation), async(req, res) => {
     try{
 
@@ -79,6 +80,41 @@ router.post("/bookings", validator(bookingVehicleValidation), async(req, res) =>
             message:"Internal Server Error"
         })
         console.error("Error in booking a vehicle route")
+    }
+})
+
+// get a vehicle
+
+router.get("/vehicles/available", async(req, res) => {
+    try{
+        const {capacityRequired, fromPincode, toPincode, startTime} = req?.query
+
+        if(Object?.keys(req?.query)?.length === 0) {
+            return res.status(400).json({
+                message:"invalid query params"
+            })
+        }
+        const obj = {
+            ...(capacityRequired ? {capacity:capacityRequired} : ""),
+            ...(fromPincode ? {origin:fromPincode} : ""),
+            ...(toPincode ? {destination:toPincode} : ""),
+            ...(startTime ? {bookingStartTime:startTime} : "")
+        }
+        const getDetails = await getVehicleDetails(obj)
+        if(!getDetails){
+            throw new Error("Error in getting vehicle details")
+        }
+        res.status(201).json({
+            success:true,
+            message : "vehicle details retrived successfully",
+            data:getDetails
+        })
+    } catch (error) {
+        res.status(500).json({
+            error:error.message,
+            message:"Internal Server Error"
+        })
+        console.error("Error in getting vehicle details")
     }
 })
 
