@@ -17,7 +17,7 @@ const organisationSchema = new mongoose.Schema({
 
 const vehicleSchema = new mongoose.Schema({
     organisationId:{type:mongoose.Schema.Types.ObjectId, ref:"organisationSchema"},
-    vehicleNo:{type:String, required:true, unique:true},
+    vehicleName:{type:String, required:true, unique:true},
     type:{type:String, enum:["truck", "bus", "van"]},
     vehicleCapacity:{
         weight:{type:Number},
@@ -26,7 +26,6 @@ const vehicleSchema = new mongoose.Schema({
     vehicleStatus:{type:String, enum:["active", "inactive", "maintenance"], default:"active"},
     availabilityStatus:{type:String, enum:["available", "partiallyBooked", "unavailable"], default:"available"},
     vehicleStartTime:{type:String},
-    vehicleEndTime:{type:String},
     booking:[{
         bookingtatus:{type:String, enum:["confirmed", "completed", "cancelled"]},
         customerName:{type:String},
