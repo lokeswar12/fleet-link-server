@@ -1,7 +1,7 @@
 import joi from 'joi'
 
 export const newVehicleSchema = joi.object({
-    vehicleNo: joi.string().required(),
+    vehicleName: joi.string().required(),
     type: joi.string().valid("truck", "bus", "van").required(),
     vehicleCapacity: joi.object({
         weight: joi.number().required(),
@@ -11,7 +11,6 @@ export const newVehicleSchema = joi.object({
     organisationId: joi.string().required(),
     availabilityStatus: joi.string().valid("available", "partiallyBooked", "unavailable").default("available"),
     vehicleStartTime: joi.string().required(),
-    vehicleEndTime: joi.string().required()
 })
 
 export const bookingVehicleValidation = joi.object({
