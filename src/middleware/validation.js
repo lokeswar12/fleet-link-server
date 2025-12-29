@@ -33,7 +33,7 @@ export const userValidation = joi.object({
     contactNo:joi.number().required(),
     address:joi.string().required(),
     name:joi.string().required(),
-    email:joi.string().optional(""),
+    email:joi.string().optional().allow(""),
     password:joi.string().required(),
     role:joi.string().required()
 })

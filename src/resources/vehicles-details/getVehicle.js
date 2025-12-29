@@ -29,7 +29,7 @@ export const getVehicleDetails = async (data) => {
         }
     
         // get vehicles
-        const activeVehicles = await Vehicle?.find(query)
+        const activeVehicles = await Vehicle?.find(query).lean()
         let availbleVehicles = activeVehicles
         if(startTime && endTime){
             availbleVehicles = activeVehicles?.filter((vehicle) => {
@@ -39,9 +39,8 @@ export const getVehicleDetails = async (data) => {
                     return startTime < end1 && start1 < endTime
                 })
                 return !overlap
-            })
+            })?.map((vehicle) => ({...vehicle, estimatedTime})) 
         }
-
         return availbleVehicles
 
 

@@ -6,7 +6,7 @@ const organisationSchema = new mongoose.Schema({
     contactNo:{type:Number},
     address:{type:String},
     name:{type:String},
-    email:{type:String, required:true},
+    email:{type:String},
     password:{type:String},
     role:{type:String, default:"user"}
 }, {timestamps:true})
